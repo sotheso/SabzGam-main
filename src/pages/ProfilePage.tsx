@@ -10,6 +10,12 @@ import {
   MapPin, Settings, User as UserIcon, BadgeCheck
 } from "lucide-react";
 
+// Helper function to convert English numbers to Persian
+function toPersianNumber(num: number | string): string {
+  const persianDigits = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+  return num.toString().replace(/\d/g, x => persianDigits[parseInt(x)]);
+}
+
 export default function ProfilePage() {
   const [coins] = useState(1250000);
   
@@ -28,10 +34,10 @@ export default function ProfilePage() {
         <Card className="p-6 mb-6">
           <div className="flex items-center mb-4">
             <div className="w-16 h-16 rounded-full gradient-bg flex items-center justify-center text-white ml-4">
-              <img src="/profile.jpg" alt="پروفایل" className="w-full h-full rounded-full object-cover" />
+              <UserIcon size={32} />
             </div>
             <div>
-              <h2 className="text-xl font-bold">امیر تهرانی</h2>
+              <h2 className="text-xl font-bold">محمد کریمی</h2>
               <p className="text-gray-500">دانشجو</p>
             </div>
           </div>
@@ -42,9 +48,9 @@ export default function ProfilePage() {
           </div>
           
           <div className="grid grid-cols-3 gap-4 mb-4">
-            <StatItem label="کل قدم‌ها" value="178.5k" icon={Footprints} />
-            <StatItem label="مسافت" value="143km" icon={MapPin} />
-            <StatItem label="CO₂ ذخیره‌شده" value="38kg" icon={Leaf} />
+            <StatItem label="کل قدم‌ها" value={`${toPersianNumber('178.5')}k`} icon={Footprints} />
+            <StatItem label="مسافت" value={`${toPersianNumber('143')}km`} icon={MapPin} />
+            <StatItem label="CO₂ ذخیره‌شده" value={`${toPersianNumber('38')}kg`} icon={Leaf} />
           </div>
           
           <Button className="w-full">ویرایش پروفایل</Button>
@@ -52,10 +58,25 @@ export default function ProfilePage() {
         
         {/* Tabs */}
         <Tabs defaultValue="history" className="mb-6">
-          <TabsList className="w-full grid grid-cols-3 h-auto">
-            <TabsTrigger value="history" className="py-2">تاریخچه</TabsTrigger>
-            <TabsTrigger value="badges" className="py-2">نشان‌ها</TabsTrigger>
-            <TabsTrigger value="rewards" className="py-2">جوایز من</TabsTrigger>
+          <TabsList className="w-full grid grid-cols-3 h-auto bg-amber-100 p-1 rounded-lg">
+            <TabsTrigger 
+              value="history" 
+              className="py-2 data-[state=active]:bg-white data-[state=active]:text-sabzgaam-dark-green data-[state=active]:shadow-sm rounded-md transition-all"
+            >
+              تاریخچه
+            </TabsTrigger>
+            <TabsTrigger 
+              value="badges" 
+              className="py-2 data-[state=active]:bg-white data-[state=active]:text-sabzgaam-dark-green data-[state=active]:shadow-sm rounded-md transition-all"
+            >
+              نشان‌ها
+            </TabsTrigger>
+            <TabsTrigger 
+              value="rewards" 
+              className="py-2 data-[state=active]:bg-white data-[state=active]:text-sabzgaam-dark-green data-[state=active]:shadow-sm rounded-md transition-all"
+            >
+              جوایز من
+            </TabsTrigger>
           </TabsList>
           
           <TabsContent value="history" className="mt-4">
@@ -75,11 +96,39 @@ export default function ProfilePage() {
           </TabsContent>
           
           <TabsContent value="rewards" className="mt-4">
-            <div className="space-y-4">
-              {myRewards.map((reward, index) => (
-                <RewardItem key={index} reward={reward} />
-              ))}
-            </div>
+            <Tabs defaultValue="food">
+              <TabsList className="w-full grid grid-cols-4 h-auto bg-amber-100 p-1 rounded-lg mb-4">
+                <TabsTrigger 
+                  value="food" 
+                  className="py-2 data-[state=active]:bg-white data-[state=active]:text-sabzgaam-dark-green data-[state=active]:shadow-sm rounded-md transition-all"
+                >
+                  رستوران
+                </TabsTrigger>
+                <TabsTrigger 
+                  value="retail" 
+                  className="py-2 data-[state=active]:bg-white data-[state=active]:text-sabzgaam-dark-green data-[state=active]:shadow-sm rounded-md transition-all"
+                >
+                  فروشگاه
+                </TabsTrigger>
+                <TabsTrigger 
+                  value="transport" 
+                  className="py-2 data-[state=active]:bg-white data-[state=active]:text-sabzgaam-dark-green data-[state=active]:shadow-sm rounded-md transition-all"
+                >
+                  حمل و نقل
+                </TabsTrigger>
+                <TabsTrigger 
+                  value="entertainment" 
+                  className="py-2 data-[state=active]:bg-white data-[state=active]:text-sabzgaam-dark-green data-[state=active]:shadow-sm rounded-md transition-all"
+                >
+                  تفریحی
+                </TabsTrigger>
+              </TabsList>
+              <div className="space-y-4">
+                {myRewards.map((reward, index) => (
+                  <RewardItem key={index} reward={reward} />
+                ))}
+              </div>
+            </Tabs>
           </TabsContent>
         </Tabs>
       </div>
@@ -141,7 +190,7 @@ function HistoryItem({ item }: HistoryItemProps) {
             <p className="font-medium">{item.date}</p>
             <div className="flex items-center text-xs text-gray-500">
               <Footprints size={12} className="ml-1" />
-              <span className="ml-2">{item.steps.toLocaleString()} قدم</span>
+              <span className="ml-2">{toPersianNumber(item.steps.toLocaleString())} قدم</span>
               <MapPin size={12} className="ml-1" />
               <span>{item.distance}</span>
             </div>
@@ -227,26 +276,20 @@ const historyItems = [
   {
     date: "امروز",
     steps: 8432,
-    distance: "6.7 کیلومتر",
+    distance: "۶٫۷ کیلومتر",
     coins: 80,
   },
   {
     date: "دیروز",
     steps: 12549,
-    distance: "10.0 کیلومتر",
+    distance: "۱۰٫۰ کیلومتر",
     coins: 120,
   },
   {
-    date: "دوشنبه، 20 فروردین",
+    date: "دوشنبه، ۲۰ فروردین",
     steps: 9876,
-    distance: "7.9 کیلومتر",
+    distance: "۷٫۹ کیلومتر",
     coins: 100,
-  },
-  {
-    date: "یکشنبه، 19 فروردین",
-    steps: 3456,
-    distance: "2.8 کیلومتر",
-    coins: 30,
   },
 ];
 
@@ -258,20 +301,20 @@ const badges = [
     unlocked: true,
   },
   {
-    title: "محیط‌زیست‌دوست",
-    description: "صرفه‌جویی 10 کیلوگرم CO₂",
-    icon: Leaf,
-    unlocked: true,
-  },
-  {
-    title: "دانشجو",
-    description: "پیاده‌روی در 5 منطقه مختلف",
+    title: "شهروند پویا",
+    description: "پیاده‌روی در ۵ منطقه مختلف",
     icon: MapPin,
     unlocked: true,
   },
   {
+    title: "محیط‌زیست‌دوست",
+    description: "صرفه‌جویی ۱۰ کیلوگرم CO₂",
+    icon: Leaf,
+    unlocked: true,
+  },
+  {
     title: "ماراتن",
-    description: "پیاده‌روی 42.2 کیلومتر در یک هفته",
+    description: "پیاده‌روی ۴۲٫۲ کیلومتر در یک هفته",
     icon: Award,
     unlocked: false,
   },
@@ -281,17 +324,17 @@ const myRewards = [
   {
     title: "تخفیف قهوه",
     vendor: "کافه تهران",
-    discount: "15% تخفیف",
-    expiry: "29 فروردین 1404",
-    code: "WC-45FG9H2J",
+    discount: "۱۵٪ تخفیف",
+    expiry: "۲۹ فروردین ۱۴۰۴",
+    code: "WC-۴۵FG۹H۲J",
     used: false,
   },
   {
     title: "بلیط اتوبوس",
     vendor: "مترو تهران",
     discount: "بلیط رایگان",
-    expiry: "26 فروردین 1404",
-    code: "WC-A73BC9D2",
+    expiry: "۲۶ فروردین ۱۴۰۴",
+    code: "WC-A۷۳BC۹D۲",
     used: true,
   },
 ];

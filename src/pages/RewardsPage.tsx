@@ -5,11 +5,12 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { Badge } from "@/components/ui/badge";
-import { Search, Coffee, ShoppingBag, Bus, Ticket, Theater } from "lucide-react";
+import { Search, Coffee, ShoppingBag, Bus, Ticket, Theater, Cake, Film } from "lucide-react";
 import { toast } from "sonner";
+import { Card } from "@/components/ui/card";
 
 export default function RewardsPage() {
-  const [coins] = useState(125000);
+  const [coins] = useState(1250000);
   const [searchQuery, setSearchQuery] = useState("");
   
   const filteredRewards = rewards.filter(reward => 
@@ -39,11 +40,31 @@ export default function RewardsPage() {
         
         {/* Category Tabs */}
         <Tabs defaultValue="all" className="mb-6">
-          <TabsList className="w-full grid grid-cols-4 h-auto">
-            <TabsTrigger value="all" className="py-2">همه</TabsTrigger>
-            <TabsTrigger value="food" className="py-2">غذا</TabsTrigger>
-            <TabsTrigger value="retail" className="py-2">خرید</TabsTrigger>
-            <TabsTrigger value="transport" className="py-2">حمل و نقل</TabsTrigger>
+          <TabsList className="w-full grid grid-cols-4 h-auto bg-amber-100 p-1 rounded-lg">
+            <TabsTrigger 
+              value="all" 
+              className="py-2 data-[state=active]:bg-white data-[state=active]:text-sabzgaam-dark-green data-[state=active]:shadow-sm rounded-md transition-all"
+            >
+              همه
+            </TabsTrigger>
+            <TabsTrigger 
+              value="food" 
+              className="py-2 data-[state=active]:bg-white data-[state=active]:text-sabzgaam-dark-green data-[state=active]:shadow-sm rounded-md transition-all"
+            >
+              غذا
+            </TabsTrigger>
+            <TabsTrigger 
+              value="retail" 
+              className="py-2 data-[state=active]:bg-white data-[state=active]:text-sabzgaam-dark-green data-[state=active]:shadow-sm rounded-md transition-all"
+            >
+              خرید
+            </TabsTrigger>
+            <TabsTrigger 
+              value="transport" 
+              className="py-2 data-[state=active]:bg-white data-[state=active]:text-sabzgaam-dark-green data-[state=active]:shadow-sm rounded-md transition-all"
+            >
+              حمل و نقل
+            </TabsTrigger>
           </TabsList>
           
           <TabsContent value="all" className="mt-4">
@@ -141,33 +162,36 @@ function RewardCard({ reward, userCoins }: RewardCardProps) {
   };
   
   return (
-    <div className="bg-white rounded-xl p-4 shadow-sm border border-gray-100 flex items-center card-hover">
-      <div className="w-10 h-10 rounded-full gradient-bg flex items-center justify-center text-white ml-3">
-        <reward.icon size={20} />
-      </div>
-      
-      <div className="flex-1">
-        <div className="flex items-center">
-          <h3 className="font-medium">{reward.title}</h3>
-          <Badge variant="outline" className="mr-2 text-xs">{reward.category}</Badge>
+    <Card className={`p-4 ${canAfford ? 'card-hover' : 'opacity-60'}`}>
+      <div className="flex justify-between items-start">
+        <div className="flex-1">
+          <div className="flex items-center mb-2">
+            <div className="w-10 h-10 rounded-full gradient-bg flex items-center justify-center text-white ml-3">
+              <reward.icon size={20} />
+            </div>
+            <div>
+              <h3 className="font-bold">{reward.title}</h3>
+              <p className="text-xs text-gray-500">{reward.vendor}</p>
+            </div>
+          </div>
+          <p className="text-sm text-gray-600 mb-2">{reward.description}</p>
+          <p className="text-sm font-semibold text-sabzgaam-dark-green">{reward.discount}</p>
         </div>
-        <p className="text-xs text-gray-500">{reward.vendor}</p>
-        <p className="text-sm font-semibold text-walkcoin-green">{reward.discount}</p>
+        <div className="text-left">
+          <PriceDisplay amount={reward.cost} />
+        </div>
       </div>
-      
-      <div className="mr-auto flex flex-col items-end">
-        <PriceDisplay amount={reward.cost} size="sm" />
+      <div className="mt-3 pt-3 border-t border-gray-100">
         <Button 
-          variant={canAfford ? "default" : "outline"} 
-          size="sm" 
-          className="mt-2" 
-          onClick={handleRedeem}
+          className="w-full" 
           disabled={!canAfford}
+          variant={canAfford ? "default" : "outline"}
+          onClick={handleRedeem}
         >
           دریافت
         </Button>
       </div>
-    </div>
+    </Card>
   );
 }
 
@@ -216,11 +240,18 @@ function FeaturedRewardCard({ reward, userCoins }: RewardCardProps) {
   );
 }
 
+const categories = [
+  { id: "food", label: "رستوران" },
+  { id: "retail", label: "فروشگاه" },
+  { id: "transport", label: "حمل و نقل" },
+  { id: "entertainment", label: "تفریحی" },
+];
+
 const rewards = [
   {
     id: 1,
-    title: "تخفیف قهوه",
-    description: "تخفیف برای خرید قهوه بعدی شما",
+    title: "قهوه",
+    description: "یک فنجان قهوه دلخواه",
     vendor: "کافه تهران",
     category: "food",
     cost: 200000,
@@ -230,17 +261,17 @@ const rewards = [
   {
     id: 2,
     title: "شیرینی رایگان",
-    description: "یک شیرینی رایگان با هر خرید",
+    description: "یک عدد شیرینی به انتخاب شما",
     vendor: "کافه تهران",
     category: "food",
     cost: 300000,
     discount: "آیتم رایگان",
-    icon: Coffee,
+    icon: Cake,
   },
   {
     id: 3,
     title: "تخفیف خرید",
-    description: "تخفیف برای خرید بعدی شما",
+    description: "تخفیف برای خرید از فروشگاه",
     vendor: "بازار تهران",
     category: "retail",
     cost: 500000,
@@ -250,7 +281,7 @@ const rewards = [
   {
     id: 4,
     title: "بلیط اتوبوس",
-    description: "یک بلیط اتوبوس رایگان",
+    description: "بلیط رایگان برای یک مسیر",
     vendor: "مترو تهران",
     category: "transport",
     cost: 150000,
@@ -260,20 +291,20 @@ const rewards = [
   {
     id: 5,
     title: "تخفیف بلیط سینما",
-    description: "تخفیف برای بلیط سینما",
+    description: "تخفیف برای تماشای فیلم",
     vendor: "سینما تهران",
     category: "entertainment",
     cost: 400000,
     discount: "۲۰٪ تخفیف",
-    icon: Ticket,
+    icon: Film,
   },
   {
     id: 6,
     title: "بلیط تئاتر",
-    description: "تخفیف برای بلیط تئاتر",
+    description: "تخفیف برای نمایش تئاتر",
     vendor: "تئاتر تهران",
     category: "entertainment",
-    cost: 600000,
+    cost: 450000,
     discount: "۲۵٪ تخفیف",
     icon: Theater,
   },

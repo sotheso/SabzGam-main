@@ -65,7 +65,7 @@ export default function HomePage() {
           </div>
           <Button 
             onClick={toggleWalking}
-            className={`${isWalking ? 'bg-red-500 hover:bg-red-600' : 'bg-white text-walkcoin-green hover:bg-gray-100'}`}
+            className={`${isWalking ? 'bg-red-500 hover:bg-red-600' : 'bg-white text-green-600 hover:bg-gray-100'}`}
           >
             {isWalking ? 'توقف پیاده‌روی' : 'شروع پیاده‌روی'}
           </Button>
@@ -74,12 +74,14 @@ export default function HomePage() {
       
       {/* Progress Ring */}
       <div className="flex justify-center -mt-10 mb-6">
-        <ProgressRing progress={progressPercentage} size={120}>
-          <div className="text-center">
-            <p className="text-3xl font-bold">{progressPercentage}%</p>
-            <p className="text-xs text-gray-500">هدف روزانه</p>
-          </div>
-        </ProgressRing>
+        <div className="bg-white p-4 rounded-2xl shadow-md">
+          <ProgressRing progress={progressPercentage} size={120}>
+            <div className="text-center">
+              <p className="text-3xl font-bold">{progressPercentage}%</p>
+              <p className="text-xs text-gray-500">هدف روزانه</p>
+            </div>
+          </ProgressRing>
+        </div>
       </div>
       
       {/* Stats Grid */}
@@ -138,7 +140,7 @@ export default function HomePage() {
 const activityItems = [
   {
     icon: CircleDollarSign,
-    description: "دریافت جایزه واک‌کوین",
+    description: "دریافت جایزه سبزگام",
     time: "امروز، ۱۰:۲۳ صبح",
     coins: 5,
   },

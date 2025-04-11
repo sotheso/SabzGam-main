@@ -24,9 +24,17 @@ export default function ExplorePage() {
           />
         </div>
         
-        {/* Map Placeholder */}
-        <div className="w-full h-48 bg-gray-200 rounded-xl mb-6 relative flex items-center justify-center">
-          <p className="text-gray-500">نقشه تعاملی به زودی</p>
+        {/* Map */}
+        <div className="w-full h-48 rounded-xl mb-6 relative overflow-hidden">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d207371.97156509518!2d51.21437267265627!3d35.697389799999995!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3f8e00491ff3dcd9%3A0xf0b3697c567024bc!2sTehran%2C%20Tehran%20Province%2C%20Iran!5e0!3m2!1sen!2s!4v1650000000000!5m2!1sen!2s"
+            width="100%"
+            height="100%"
+            style={{ border: 0 }}
+            allowFullScreen
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+          />
           <div className="absolute bottom-4 right-4">
             <Button size="sm" className="gradient-bg">
               <MapPin size={16} className="ml-1" />
@@ -72,24 +80,30 @@ interface RouteProps {
 function RouteCard({ route }: RouteProps) {
   return (
     <Card className="p-4 card-hover">
-      <div className="flex justify-between items-start">
-        <div>
-          <h3 className="font-bold">{route.name}</h3>
-          <div className="flex items-center text-xs text-gray-500 mt-1">
-            <MapPin size={12} className="ml-1" />
-            <span className="ml-2">{route.distance}</span>
-            <Clock size={12} className="ml-1" />
-            <span className="ml-2">{route.time}</span>
-            <Users size={12} className="ml-1" />
-            <span>{route.popularity}+ پیاده‌رو</span>
+      <div className="flex justify-between items-start gap-8">
+        <div className="space-y-3">
+          <h3 className="font-bold text-lg">{route.name}</h3>
+          <div className="flex flex-col space-y-2">
+            <div className="flex items-center text-sm text-gray-600">
+              <MapPin size={14} className="ml-2" />
+              <span>{route.distance}</span>
+            </div>
+            <div className="flex items-center text-sm text-gray-600">
+              <Clock size={14} className="ml-2" />
+              <span>{route.time}</span>
+            </div>
+            <div className="flex items-center text-sm text-gray-600">
+              <Users size={14} className="ml-2" />
+              <span>{route.popularity}+ پیاده‌رو</span>
+            </div>
           </div>
         </div>
-        <div className="ml-auto text-right">
-          <span className="text-xs text-gray-500">دریافت</span>
-          <div className="font-bold text-sabzgaam-dark-green">{route.coins} SG</div>
+        <div className="text-right shrink-0">
+          <span className="text-xs text-gray-500 block mb-2">دریافت</span>
+          <div className="font-bold text-amber-500 text-xl">{route.coins} سکه</div>
         </div>
       </div>
-      <div className="mt-3 pt-3 border-t border-gray-100 flex justify-between">
+      <div className="mt-4 pt-3 border-t border-gray-100 flex justify-between">
         <Button variant="outline" size="sm">
           مشاهده جزئیات
         </Button>
@@ -131,8 +145,8 @@ function EventCard({ event }: EventProps) {
         <div className="text-right">
           <span className="text-xs text-gray-500">جایزه</span>
           <div className="flex items-center">
-            <span className="font-bold text-sabzgaam-dark-green ml-1">{event.coins} SG</span>
-            <Award size={16} className="text-sabzgaam-dark-blue" />
+            <span className="font-bold text-amber-500 ml-1">{event.coins} سکه</span>
+            <Award size={16} className="text-amber-500" />
           </div>
         </div>
       </div>

@@ -7,6 +7,12 @@ import {
   MapPin, Star, Trophy, Users, Flame, Clock
 } from "lucide-react";
 
+// Helper function to convert English numbers to Persian
+function toPersianNumber(num: number | string): string {
+  const persianDigits = ['۰', '۱', '۲', '۳', '۴', '۵', '۶', '۷', '۸', '۹'];
+  return num.toString().replace(/\d/g, x => persianDigits[parseInt(x)]);
+}
+
 export default function AchievementsPage() {
   const totalBadges = badges.length;
   const unlockedBadges = badges.filter(badge => badge.progress === 100).length;
@@ -29,11 +35,11 @@ export default function AchievementsPage() {
             <div className="mr-4">
               <h2 className="text-lg font-bold">پیشرفت دستاوردها</h2>
               <p className="text-sm text-gray-500">
-                شما {unlockedBadges} از {totalBadges} نشان را باز کرده‌اید
+                شما {toPersianNumber(unlockedBadges)} از {toPersianNumber(totalBadges)} نشان را باز کرده‌اید
               </p>
               <div className="mt-1 flex items-center">
                 <Star size={16} className="text-yellow-500 ml-1" />
-                <span className="font-medium text-walkcoin-purple">سطح ۳: کاوشگر شهری</span>
+                <span className="font-medium text-walkcoin-purple">سطح ۳: شهروند پویا</span>
               </div>
             </div>
           </div>
@@ -93,7 +99,7 @@ function ChallengeCard({ challenge }: ChallengeProps) {
           
           <div className="mt-2">
             <div className="flex justify-between items-center mb-1">
-              <span className="text-xs text-gray-500">{challenge.progress}% تکمیل شده</span>
+              <span className="text-xs text-gray-500">{toPersianNumber(challenge.progress)}٪ تکمیل شده</span>
               <span className="text-xs text-gray-500 flex items-center">
                 <Clock size={12} className="ml-1" />
                 پایان: {challenge.endDate}
@@ -138,7 +144,7 @@ function BadgeCard({ badge }: BadgeProps) {
         ) : (
           <div className="absolute inset-0">
             <ProgressRing progress={badge.progress} size={64} strokeWidth={4}>
-              <span className="text-xs font-bold">{badge.progress}%</span>
+              <span className="text-xs font-bold">{toPersianNumber(badge.progress)}٪</span>
             </ProgressRing>
           </div>
         )}
@@ -191,7 +197,7 @@ const badges = [
     progress: 100,
   },
   {
-    title: "کاوشگر شهری",
+    title: "شهروند پویا",
     description: "در ۵ منطقه مختلف پیاده‌روی کنید",
     icon: MapPin,
     progress: 80,
@@ -210,7 +216,7 @@ const badges = [
   },
   {
     title: "استاد ماراتن",
-    description: "۴۲.۲ کیلومتر در یک ماه پیاده‌روی کنید",
+    description: "۴۲٫۲ کیلومتر در یک ماه پیاده‌روی کنید",
     icon: Trophy,
     progress: 35,
   },
