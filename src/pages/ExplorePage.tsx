@@ -94,13 +94,13 @@ function RouteCard({ route }: RouteProps) {
             </div>
             <div className="flex items-center text-sm text-gray-600">
               <Users size={14} className="ml-2" />
-              <span>{route.popularity}+ پیاده‌رو</span>
+              <span>{route.popularity.toLocaleString('fa-IR')}+ پیاده‌رو</span>
             </div>
           </div>
         </div>
         <div className="text-right shrink-0">
           <span className="text-xs text-gray-500 block mb-2">دریافت</span>
-          <div className="font-bold text-amber-500 text-xl">{route.coins} سکه</div>
+          <div className="font-bold text-amber-500 text-xl">{route.coins.toLocaleString('fa-IR')} سکه</div>
         </div>
       </div>
       <div className="mt-4 pt-3 border-t border-gray-100 flex justify-between">
@@ -139,13 +139,13 @@ function EventCard({ event }: EventProps) {
           </div>
           <div className="flex items-center text-xs text-gray-500 mt-1">
             <Users size={12} className="ml-1" />
-            <span>{event.participants} شرکت‌کننده</span>
+            <span>{event.participants.toLocaleString('fa-IR')} شرکت‌کننده</span>
           </div>
         </div>
         <div className="text-right">
           <span className="text-xs text-gray-500">جایزه</span>
           <div className="flex items-center">
-            <span className="font-bold text-amber-500 ml-1">{event.coins} سکه</span>
+            <span className="font-bold text-amber-500 ml-1">{event.coins.toLocaleString('fa-IR')} سکه</span>
             <Award size={16} className="text-amber-500" />
           </div>
         </div>

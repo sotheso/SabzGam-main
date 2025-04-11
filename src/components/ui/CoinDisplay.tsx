@@ -39,7 +39,7 @@ export function CoinDisplay({
         <CircleDollarSign className="text-amber-100 drop-shadow" size={iconSizes[size]} />
       </div>
       <span className={cn("font-bold text-amber-600", sizeClasses[size])}>
-        {amount.toLocaleString()}
+        {amount.toLocaleString('fa-IR')}
       </span>
     </div>
   );

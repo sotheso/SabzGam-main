@@ -60,8 +60,8 @@ export default function HomePage() {
         <p className="text-white/80">پیشرفت امروز</p>
         <div className="flex justify-between items-center">
           <div>
-            <h2 className="text-4xl font-bold">{steps.toLocaleString()}</h2>
-            <p className="text-white/70">از {dailyGoal.toLocaleString()} قدم</p>
+            <h2 className="text-4xl font-bold">{steps.toLocaleString('fa-IR')}</h2>
+            <p className="text-white/70">از {dailyGoal.toLocaleString('fa-IR')} قدم</p>
           </div>
           <Button 
             onClick={toggleWalking}
@@ -77,7 +77,7 @@ export default function HomePage() {
         <div className="bg-white p-4 rounded-2xl shadow-md">
           <ProgressRing progress={progressPercentage} size={120}>
             <div className="text-center">
-              <p className="text-3xl font-bold">{progressPercentage}%</p>
+              <p className="text-3xl font-bold">{progressPercentage.toLocaleString('fa-IR')}%</p>
               <p className="text-xs text-gray-500">هدف روزانه</p>
             </div>
           </ProgressRing>
@@ -88,22 +88,22 @@ export default function HomePage() {
       <div className="px-4 grid grid-cols-2 gap-4 mb-6">
         <InfoCard 
           title="مسافت" 
-          value={`${distanceKm} کیلومتر`}
+          value={`${parseFloat(distanceKm).toLocaleString('fa-IR')} کیلومتر`}
           icon={<MapPin size={18} />}
         />
         <InfoCard 
           title="CO₂ صرفه‌جویی شده" 
-          value={`${co2Saved} گرم`}
+          value={`${parseInt(co2Saved).toLocaleString('fa-IR')} گرم`}
           icon={<Leaf size={18} />}
         />
         <InfoCard 
           title="سکه‌های امروز" 
-          value={isWalking ? `+${Math.floor(steps / 1000)}` : "0"}
+          value={isWalking ? `+${Math.floor(steps / 1000).toLocaleString('fa-IR')}` : "۰"}
           icon={<CircleDollarSign size={18} />}
         />
         <InfoCard 
           title="سرعت متوسط قدم" 
-          value={isWalking ? `${Math.floor(Math.random() * 20) + 90}/دقیقه` : "0/دقیقه"}
+          value={isWalking ? `${(Math.floor(Math.random() * 20) + 90).toLocaleString('fa-IR')}/دقیقه` : "۰/دقیقه"}
           icon={<Footprints size={18} />}
         />
       </div>

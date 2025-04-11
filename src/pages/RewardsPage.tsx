@@ -166,10 +166,10 @@ function RewardCard({ reward, userCoins }: RewardCardProps) {
       <div className="flex justify-between items-start">
         <div className="flex-1">
           <div className="flex items-center mb-2">
-            <div className="w-10 h-10 rounded-full gradient-bg flex items-center justify-center text-white ml-3">
+            <div className="w-10 h-10 rounded-full gradient-bg flex items-center justify-center text-white ml-6">
               <reward.icon size={20} />
             </div>
-            <div>
+            <div className="mr-4">
               <h3 className="font-bold">{reward.title}</h3>
               <p className="text-xs text-gray-500">{reward.vendor}</p>
             </div>
@@ -214,10 +214,10 @@ function FeaturedRewardCard({ reward, userCoins }: RewardCardProps) {
     <div className="bg-gradient-to-br from-sabzgaam-light-blue/20 to-sabzgaam-dark-green/30 rounded-xl p-5 shadow-md border border-gray-100 card-hover">
       <div className="flex justify-between items-start mb-3">
         <div className="flex items-center">
-          <div className="w-10 h-10 rounded-full gradient-bg flex items-center justify-center text-white ml-3">
+          <div className="w-10 h-10 rounded-full gradient-bg flex items-center justify-center text-white ml-6">
             <reward.icon size={20} />
           </div>
-          <div>
+          <div className="mr-4">
             <h3 className="font-bold">{reward.title}</h3>
             <p className="text-sm text-gray-600">{reward.vendor}</p>
           </div>

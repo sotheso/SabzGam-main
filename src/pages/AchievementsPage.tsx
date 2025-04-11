@@ -23,7 +23,7 @@ export default function AchievementsPage() {
       <div className="p-6">
         <div className="flex justify-between items-center mb-6">
           <h1 className="text-2xl font-bold">دستاوردها</h1>
-          <PriceDisplay amount={125000} />
+          <PriceDisplay amount={1250000} />
         </div>
         
         {/* Progress Summary */}
