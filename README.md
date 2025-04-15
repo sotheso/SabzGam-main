@@ -127,6 +127,6 @@ sabzgam/
 
 ## 📞 تماس با ما
 - ایمیل: sothesom@gmail.com
-- اینستاگرام: @Sothesom
+- تلگرام: @Sothesom
 
 </div> 
