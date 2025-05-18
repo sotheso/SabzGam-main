@@ -10,7 +10,7 @@ import { toast } from "sonner";
 import { Card } from "@/components/ui/card";
 
 export default function RewardsPage() {
-  const [coins] = useState(1250000);
+  const [coins] = useState(6000000);
   const [searchQuery, setSearchQuery] = useState("");
   
   const filteredRewards = rewards.filter(reward => 
@@ -63,7 +63,7 @@ export default function RewardsPage() {
               value="retail" 
               className="py-2 data-[state=active]:bg-white data-[state=active]:text-sabzgaam-dark-green data-[state=active]:shadow-sm rounded-md transition-all"
             >
-              خرید
+              خرید و تفریح
             </TabsTrigger>
           </TabsList>
           
@@ -247,39 +247,79 @@ const categories = [
   { id: "entertainment", label: "تفریحی" },
 ];
 
-const rewards = [
+const rewards: Reward[] = [
   {
     id: 1,
+    title: "کافه لمیز",
+    description: "تخفیف ویژه برای انواع نوشیدنی‌های گرم و سرد",
+    vendor: "۱.۲ کیلومتر با شما فاصله دارد",
+    category: "food",
+    cost: 500000,
+    discount: "۲۰٪ تخفیف",
+    icon: Coffee
+  },
+  {
+    id: 2,
+    title: "کافه ویونا",
+    description: "تخفیف برای منوی صبحانه و عصرانه",
+    vendor: "۲.۱ کیلومتر با شما فاصله دارد",
+    category: "food",
+    cost: 600000,
+    discount: "۱۵٪ تخفیف",
+    icon: Coffee
+  },
+  {
+    id: 3,
+    title: "مهدکودک شادی",
+    description: "تخفیف ویژه برای ثبت‌نام ترم پاییز",
+    vendor: "۱.۸ کیلومتر با شما فاصله دارد",
+    category: "retail",
+    cost: 5000000,
+    discount: "۲۵٪ تخفیف",
+    icon: Cake
+  },
+  {
+    id: 4,
+    title: "رستوران زنجیره‌ای",
+    description: "تخفیف برای انواع غذاهای ایرانی و فرنگی",
+    vendor: "۱.۵ کیلومتر با شما فاصله دارد",
+    category: "food",
+    cost: 3500000,
+    discount: "۳۰٪ تخفیف",
+    icon: ShoppingBag
+  },
+  {
+    id: 5,
     title: "قهوه",
     description: "یک فنجان قهوه دلخواه",
-    vendor: "کافه تهران",
+    vendor: "کافه قهوه باز",
     category: "food",
-    cost: 200000,
+    cost: 350000,
     discount: "۱۵٪ تخفیف",
     icon: Coffee,
   },
   {
-    id: 2,
-    title: "شیرینی رایگان",
-    description: "یک عدد شیرینی به انتخاب شما",
-    vendor: "کافه تهران",
+    id: 6,
+    title: "شیرینی دانمارکی",
+    description: "یک جعبه شیرینی دانمارکی تازه",
+    vendor: "شیرینی گل محمدی",
     category: "food",
     cost: 300000,
-    discount: "آیتم رایگان",
+    discount: "۲۰٪ تخفیف",
     icon: Cake,
   },
   {
-    id: 3,
-    title: "تخفیف خرید",
-    description: "تخفیف برای خرید از فروشگاه",
-    vendor: "بازار تهران",
+    id: 7,
+    title: "تخفیف خرید از ال سی من",
+    description: "تخفیف ویژه برای خرید از فروشگاه‌های ال سی من",
+    vendor: "۱.۷ کیلومتر با شما فاصله دارد",
     category: "retail",
-    cost: 500000,
-    discount: "۱۰٪ تخفیف",
+    cost: 5000000,
+    discount: "۲۵٪ تخفیف",
     icon: ShoppingBag,
   },
   {
-    id: 4,
+    id: 8,
     title: "بلیط اتوبوس",
     description: "بلیط رایگان برای یک مسیر",
     vendor: "مترو تهران",
@@ -289,7 +329,7 @@ const rewards = [
     icon: Bus,
   },
   {
-    id: 5,
+    id: 9,
     title: "تخفیف بلیط سینما",
     description: "تخفیف برای تماشای فیلم",
     vendor: "سینما تهران",
@@ -299,7 +339,7 @@ const rewards = [
     icon: Film,
   },
   {
-    id: 6,
+    id: 10,
     title: "بلیط تئاتر",
     description: "تخفیف برای نمایش تئاتر",
     vendor: "تئاتر تهران",
@@ -357,6 +397,26 @@ const rewards = [
     cost: 9000,
     discount: "۴۰٪ تخفیف",
     icon: Bus,
+  },
+  {
+    id: 11,
+    title: "پارک آبی اوپال",
+    description: "تخفیف ویژه برای بلیط ورودی پارک آبی و استفاده از تمامی امکانات",
+    vendor: "۲.۵ کیلومتر با شما فاصله دارد",
+    category: "retail",
+    cost: 450000,
+    discount: "۳۵٪ تخفیف",
+    icon: ShoppingBag
+  },
+  {
+    id: 12,
+    title: "استخر مجموعه تفریحی شاهین",
+    description: "تخفیف برای استفاده از استخر و سونا",
+    vendor: "۱.۳ کیلومتر با شما فاصله دارد",
+    category: "retail",
+    cost: 560000,
+    discount: "۲۵٪ تخفیف",
+    icon: ShoppingBag
   },
 ];
 
