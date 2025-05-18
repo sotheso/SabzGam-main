@@ -45,7 +45,7 @@ export default function ProfilePage() {
           <div className="flex justify-between items-center mb-4">
             <PriceDisplay amount={coins} />
             <div className="flex gap-2">
-              <Badge icon={Award} label="پیاده‌رو طلایی" className="bg-yellow-500 text-white" />
+            <Badge icon={Award} label="پیاده‌رو طلایی" className="bg-yellow-500 text-white" />
               <Badge icon={Bus} label="قهرمان مترو" className="bg-blue-500 text-white" />
             </div>
           </div>
@@ -193,7 +193,7 @@ function HistoryItem({ item }: HistoryItemProps) {
             {item.transport ? (
               <Bus size={18} className="text-sabzgaam-dark-green" />
             ) : (
-              <Calendar size={18} className="text-sabzgaam-dark-green" />
+            <Calendar size={18} className="text-sabzgaam-dark-green" />
             )}
           </div>
           <div>
@@ -203,12 +203,12 @@ function HistoryItem({ item }: HistoryItemProps) {
                 <span className="ml-2">{item.distance}</span>
               </div>
             ) : (
-              <div className="flex items-center text-xs text-gray-500">
-                <Footprints size={12} className="ml-1" />
-                <span className="ml-2">{toPersianNumber(item.steps.toLocaleString())} قدم</span>
-                <MapPin size={12} className="ml-1" />
-                <span>{item.distance}</span>
-              </div>
+            <div className="flex items-center text-xs text-gray-500">
+              <Footprints size={12} className="ml-1" />
+              <span className="ml-2">{toPersianNumber(item.steps.toLocaleString())} قدم</span>
+              <MapPin size={12} className="ml-1" />
+              <span>{item.distance}</span>
+            </div>
             )}
             {item.transport && (
               <div className="text-xs text-blue-600 mt-1">{item.description}</div>

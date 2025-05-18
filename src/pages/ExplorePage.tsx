@@ -53,6 +53,48 @@ export default function ExplorePage() {
           </div>
         </div>
 
+        {/* Metro Map */}
+        <div className="mb-6">
+          <h2 className="text-xl font-bold mb-3">نقشه مترو تهران</h2>
+          <Card className="p-4">
+            <div className="relative w-full h-[400px] rounded-lg overflow-hidden">
+              <img 
+                src="/metro-map.jpg" 
+                alt="نقشه مترو تهران" 
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute bottom-4 right-4 flex gap-2">
+                <Button size="sm" variant="secondary" className="bg-white/90 hover:bg-white">
+                  <MapPin size={16} className="ml-1" />
+                  نزدیک‌ترین ایستگاه
+                </Button>
+                <Button size="sm" variant="secondary" className="bg-white/90 hover:bg-white">
+                  <Navigation size={16} className="ml-1" />
+                  مسیریابی
+                </Button>
+              </div>
+            </div>
+            <div className="mt-4 grid grid-cols-2 gap-4">
+              <div className="bg-blue-50 p-3 rounded-lg">
+                <h3 className="font-bold text-blue-700 mb-2">خط ۱</h3>
+                <p className="text-sm text-blue-600">تجریش - کهریزک</p>
+              </div>
+              <div className="bg-red-50 p-3 rounded-lg">
+                <h3 className="font-bold text-red-700 mb-2">خط ۲</h3>
+                <p className="text-sm text-red-600">فرهنگسرا - صادقیه</p>
+              </div>
+              <div className="bg-green-50 p-3 rounded-lg">
+                <h3 className="font-bold text-green-700 mb-2">خط ۳</h3>
+                <p className="text-sm text-green-600">قائم - آزادگان</p>
+              </div>
+              <div className="bg-yellow-50 p-3 rounded-lg">
+                <h3 className="font-bold text-yellow-700 mb-2">خط ۴</h3>
+                <p className="text-sm text-yellow-600">بیمه - ارم سبز</p>
+              </div>
+            </div>
+          </Card>
+        </div>
+
         {/* Popular Routes */}
         <div className="mb-6">
           <h2 className="text-xl font-bold mb-3">مسیرهای محبوب</h2>
