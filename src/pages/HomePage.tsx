@@ -58,7 +58,7 @@ export default function HomePage() {
           <h1 className="text-2xl font-bold">سبزگام</h1>
           <CoinDisplay amount={coins} animate={isWalking} />
         </div>
-        <div className="text-center mb-4">
+        <div className="text-right mb-4">
           <h2 className="text-2xl font-bold mb-1">هدف روزانه پیاده‌روی</h2>
           <p className="text-white/70">۱۰,۰۰۰ قدم در روز</p>
         </div>
@@ -76,8 +76,8 @@ export default function HomePage() {
         </div>
       </div>
       
-      <div className="flex justify-center -mt-10 mb-6">
-        <div className="bg-white p-4 rounded-2xl shadow-md mr-12">
+      <div className="flex justify-center -mt-10 mb-6 gap-5">
+        <div className="bg-white p-4 rounded-2xl shadow-md">
           <ProgressRing progress={progressPercentage} size={120}>
             <div className="text-center">
               <p className="text-3xl font-bold">{progressPercentage.toLocaleString('fa-IR')}%</p>
@@ -86,10 +86,10 @@ export default function HomePage() {
           </ProgressRing>
         </div>
         <div className="bg-white p-4 rounded-2xl shadow-md">
-          <ProgressRing progress={Math.min((walkingTime / 3600) * 100, 100)} size={120}>
+          <ProgressRing progress={Math.min((publicTransportTime / 3600) * 100, 100)} size={120}>
             <div className="text-center">
-              <p className="text-3xl font-bold">{formatWalkingTime(walkingTime)}</p>
-              <p className="text-xs text-gray-500">زمان پیاده‌روی</p>
+              <p className="text-base font-bold">{formatWalkingTime(publicTransportTime)}</p>
+              <p className="text-xs text-gray-500">زمان استفاده از حمل و نقل عمومی</p>
             </div>
           </ProgressRing>
         </div>
@@ -97,7 +97,7 @@ export default function HomePage() {
       
       <div className="px-4 grid grid-cols-2 gap-4 mb-6">
         <InfoCard 
-          title="مسافت طی شده" 
+          title="مسافت طی شده پیاده" 
           value={`${parseFloat(distanceKm).toLocaleString('fa-IR')} کیلومتر`}
           icon={<MapPin size={18} />}
         />
@@ -105,6 +105,16 @@ export default function HomePage() {
           title="CO₂ صرفه‌جویی شده" 
           value={`${parseInt(co2Saved).toLocaleString('fa-IR')} گرم`}
           icon={<Leaf size={18} />}
+        />
+        <InfoCard 
+          title="مسافت طی شده با مترو" 
+          value="۱۲ کیلومتر"
+          icon={<Train size={18} />}
+        />
+        <InfoCard 
+          title="مسافت طی شده با اتوبوس" 
+          value="۸ کیلومتر"
+          icon={<Bus size={18} />}
         />
         <InfoCard 
           title="سکه‌های امروز" 
