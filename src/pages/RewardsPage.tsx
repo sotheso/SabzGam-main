@@ -48,6 +48,12 @@ export default function RewardsPage() {
               همه
             </TabsTrigger>
             <TabsTrigger 
+              value="transport" 
+              className="py-2 data-[state=active]:bg-white data-[state=active]:text-sabzgaam-dark-green data-[state=active]:shadow-sm rounded-md transition-all"
+            >
+              حمل و نقل
+            </TabsTrigger>
+            <TabsTrigger 
               value="food" 
               className="py-2 data-[state=active]:bg-white data-[state=active]:text-sabzgaam-dark-green data-[state=active]:shadow-sm rounded-md transition-all"
             >
@@ -58,12 +64,6 @@ export default function RewardsPage() {
               className="py-2 data-[state=active]:bg-white data-[state=active]:text-sabzgaam-dark-green data-[state=active]:shadow-sm rounded-md transition-all"
             >
               خرید
-            </TabsTrigger>
-            <TabsTrigger 
-              value="transport" 
-              className="py-2 data-[state=active]:bg-white data-[state=active]:text-sabzgaam-dark-green data-[state=active]:shadow-sm rounded-md transition-all"
-            >
-              حمل و نقل
             </TabsTrigger>
           </TabsList>
           
@@ -307,6 +307,56 @@ const rewards = [
     cost: 450000,
     discount: "۲۵٪ تخفیف",
     icon: Theater,
+  },
+  {
+    id: 21,
+    title: "سفر هوشمندانه، با مترو و BRT",
+    description: "با استفاده از مترو و BRT، سفرهای خود را هوشمندانه‌تر کنید.",
+    vendor: "حمل و نقل عمومی",
+    category: "transport",
+    cost: 5000,
+    discount: "۲۰٪ تخفیف",
+    icon: Bus,
+  },
+  {
+    id: 22,
+    title: "حمل و نقل عمومی؛ انتخاب شما، آینده تهران",
+    description: "با انتخاب حمل و نقل عمومی، به آینده تهران کمک کنید.",
+    vendor: "حمل و نقل عمومی",
+    category: "transport",
+    cost: 6000,
+    discount: "۲۵٪ تخفیف",
+    icon: Bus,
+  },
+  {
+    id: 23,
+    title: "با هر سفر، سهم خود را در هوای پاک تهران داشته باشیم",
+    description: "با استفاده از حمل و نقل عمومی، به هوای پاک تهران کمک کنید.",
+    vendor: "حمل و نقل عمومی",
+    category: "transport",
+    cost: 7000,
+    discount: "۳۰٪ تخفیف",
+    icon: Bus,
+  },
+  {
+    id: 24,
+    title: "از ترافیک فرار کن، با اتوبوس و مترو همراه شو!",
+    description: "با استفاده از اتوبوس و مترو، از ترافیک فرار کنید.",
+    vendor: "حمل و نقل عمومی",
+    category: "transport",
+    cost: 8000,
+    discount: "۳۵٪ تخفیف",
+    icon: Bus,
+  },
+  {
+    id: 25,
+    title: "شهر بهتر، زندگی بهتر؛ با حمل و نقل عمومی",
+    description: "با استفاده از حمل و نقل عمومی، زندگی بهتری داشته باشید.",
+    vendor: "حمل و نقل عمومی",
+    category: "transport",
+    cost: 9000,
+    discount: "۴۰٪ تخفیف",
+    icon: Bus,
   },
 ];
 

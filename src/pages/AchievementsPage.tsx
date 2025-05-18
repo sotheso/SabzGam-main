@@ -4,7 +4,7 @@ import { PriceDisplay } from "@/components/ui/PriceDisplay";
 import { ProgressRing } from "@/components/ui/ProgressRing";
 import { 
   Award, Calendar, Check, Footprints, Leaf, 
-  MapPin, Star, Trophy, Users, Flame, Clock
+  MapPin, Star, Trophy, Users, Flame, Clock, Bus
 } from "lucide-react";
 
 // Helper function to convert English numbers to Persian
@@ -41,6 +41,21 @@ export default function AchievementsPage() {
                 <Star size={16} className="text-yellow-500 ml-1" />
                 <span className="font-medium text-walkcoin-purple">سطح ۳: شهروند پویا</span>
               </div>
+            </div>
+          </div>
+        </Card>
+
+        {/* Time Saved Banner */}
+        <Card className="p-4 mb-6 bg-gradient-to-r from-green-500 to-blue-500 text-white">
+          <div className="flex items-center justify-between">
+            <div>
+              <h2 className="text-lg font-bold">زمان صرفه‌جویی شده با حمل و نقل عمومی</h2>
+              <p className="text-sm">شما با استفاده از حمل و نقل عمومی، ۵ ساعت در هفته صرفه‌جویی کرده‌اید!</p>
+            </div>
+            <div className="relative w-16 h-16">
+              <ProgressRing progress={80} size={64} strokeWidth={4}>
+                <Clock size={24} />
+              </ProgressRing>
             </div>
           </div>
         </Card>
@@ -158,6 +173,46 @@ function BadgeCard({ badge }: BadgeProps) {
 
 const challenges = [
   {
+    title: "چالش سفر هوشمندانه",
+    description: "با استفاده از مترو و BRT، سفرهای خود را هوشمندانه‌تر کنید. شما ۵ ساعت در هفته صرفه‌جویی کرده‌اید!",
+    icon: Bus,
+    progress: 80,
+    reward: 30,
+    endDate: "یکشنبه، ۲۵ فروردین",
+  },
+  {
+    title: "چالش حمل و نقل عمومی",
+    description: "با انتخاب حمل و نقل عمومی، به آینده تهران کمک کنید.",
+    icon: Bus,
+    progress: 70,
+    reward: 25,
+    endDate: "دوشنبه، ۲ اردیبهشت",
+  },
+  {
+    title: "چالش هوای پاک",
+    description: "با استفاده از حمل و نقل عمومی، به هوای پاک تهران کمک کنید.",
+    icon: Bus,
+    progress: 60,
+    reward: 20,
+    endDate: "جمعه، ۳۰ فروردین",
+  },
+  {
+    title: "چالش فرار از ترافیک",
+    description: "با استفاده از اتوبوس و مترو، از ترافیک فرار کنید.",
+    icon: Bus,
+    progress: 50,
+    reward: 15,
+    endDate: "یکشنبه، ۲۵ فروردین",
+  },
+  {
+    title: "چالش شهر بهتر",
+    description: "با استفاده از حمل و نقل عمومی، زندگی بهتری داشته باشید.",
+    icon: Bus,
+    progress: 40,
+    reward: 10,
+    endDate: "دوشنبه، ۲ اردیبهشت",
+  },
+  {
     title: "چالش قدم هفتگی",
     description: "۵۰,۰۰۰ قدم در این هفته بردارید",
     icon: Footprints,
@@ -185,6 +240,36 @@ const challenges = [
 
 const badges = [
   {
+    title: "سفر هوشمندانه",
+    description: "با استفاده از مترو و BRT، سفرهای خود را هوشمندانه‌تر کنید.",
+    icon: Bus,
+    progress: 80,
+  },
+  {
+    title: "حمل و نقل عمومی؛ انتخاب شما، آینده تهران",
+    description: "با انتخاب حمل و نقل عمومی، به آینده تهران کمک کنید.",
+    icon: Bus,
+    progress: 70,
+  },
+  {
+    title: "با هر سفر، سهم خود را در هوای پاک تهران داشته باشیم",
+    description: "با استفاده از حمل و نقل عمومی، به هوای پاک تهران کمک کنید.",
+    icon: Bus,
+    progress: 60,
+  },
+  {
+    title: "از ترافیک فرار کن، با اتوبوس و مترو همراه شو!",
+    description: "با استفاده از اتوبوس و مترو، از ترافیک فرار کنید.",
+    icon: Bus,
+    progress: 50,
+  },
+  {
+    title: "شهر بهتر، زندگی بهتر؛ با حمل و نقل عمومی",
+    description: "با استفاده از حمل و نقل عمومی، زندگی بهتری داشته باشید.",
+    icon: Bus,
+    progress: 40,
+  },
+  {
     title: "اولین قدم‌ها",
     description: "اولین ۱,۰۰۰ قدم خود را بردارید",
     icon: Footprints,
@@ -198,38 +283,8 @@ const badges = [
   },
   {
     title: "شهروند پویا",
-    description: "در ۵ منطقه مختلف پیاده‌روی کنید",
-    icon: MapPin,
-    progress: 80,
-  },
-  {
-    title: "مبارز هفتگی",
-    description: "۵ چالش هفتگی را کامل کنید",
-    icon: Award,
-    progress: 60,
-  },
-  {
-    title: "پادشاه تداوم",
-    description: "۷ روز پشت سر هم پیاده‌روی کنید",
-    icon: Calendar,
-    progress: 100,
-  },
-  {
-    title: "استاد ماراتن",
-    description: "۴۲٫۲ کیلومتر در یک ماه پیاده‌روی کنید",
-    icon: Trophy,
-    progress: 35,
-  },
-  {
-    title: "استاد تداوم",
-    description: "یک رکورد ۳۰ روزه حفظ کنید",
-    icon: Flame,
-    progress: 23,
-  },
-  {
-    title: "راهنمای جامعه",
-    description: "به ۳ کاربر جدید در پیوستن کمک کنید",
+    description: "به عنوان یک شهروند پویا شناخته شوید",
     icon: Users,
-    progress: 33,
+    progress: 100,
   },
 ];
