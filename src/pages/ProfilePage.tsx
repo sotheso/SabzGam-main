@@ -7,7 +7,7 @@ import { Card } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { 
   Award, Calendar, Clock, Footprints, Leaf, 
-  MapPin, Settings, User as UserIcon, BadgeCheck
+  MapPin, Settings, User as UserIcon, BadgeCheck, Bus
 } from "lucide-react";
 
 // Helper function to convert English numbers to Persian
@@ -44,13 +44,17 @@ export default function ProfilePage() {
           
           <div className="flex justify-between items-center mb-4">
             <PriceDisplay amount={coins} />
-            <Badge icon={Award} label="پیاده‌رو طلایی" className="bg-yellow-500 text-white" />
+            <div className="flex gap-2">
+              <Badge icon={Award} label="پیاده‌رو طلایی" className="bg-yellow-500 text-white" />
+              <Badge icon={Bus} label="قهرمان مترو" className="bg-blue-500 text-white" />
+            </div>
           </div>
           
-          <div className="grid grid-cols-3 gap-4 mb-4">
+          <div className="grid grid-cols-4 gap-4 mb-4">
             <StatItem label="کل قدم‌ها" value={`${toPersianNumber('178.5')}k`} icon={Footprints} />
             <StatItem label="مسافت" value={`${toPersianNumber('143')}km`} icon={MapPin} />
             <StatItem label="CO₂ ذخیره‌شده" value={`${toPersianNumber('38')}kg`} icon={Leaf} />
+            <StatItem label="زمان صرفه‌جویی شده" value="۵ ساعت" icon={Clock} />
           </div>
           
           <Button className="w-full">ویرایش پروفایل</Button>
@@ -96,8 +100,14 @@ export default function ProfilePage() {
           </TabsContent>
           
           <TabsContent value="rewards" className="mt-4">
-            <Tabs defaultValue="food">
+            <Tabs defaultValue="transport">
               <TabsList className="w-full grid grid-cols-4 h-auto bg-amber-100 p-1 rounded-lg mb-4">
+                <TabsTrigger 
+                  value="transport" 
+                  className="py-2 data-[state=active]:bg-white data-[state=active]:text-sabzgaam-dark-green data-[state=active]:shadow-sm rounded-md transition-all"
+                >
+                  حمل و نقل
+                </TabsTrigger>
                 <TabsTrigger 
                   value="food" 
                   className="py-2 data-[state=active]:bg-white data-[state=active]:text-sabzgaam-dark-green data-[state=active]:shadow-sm rounded-md transition-all"
@@ -109,12 +119,6 @@ export default function ProfilePage() {
                   className="py-2 data-[state=active]:bg-white data-[state=active]:text-sabzgaam-dark-green data-[state=active]:shadow-sm rounded-md transition-all"
                 >
                   فروشگاه
-                </TabsTrigger>
-                <TabsTrigger 
-                  value="transport" 
-                  className="py-2 data-[state=active]:bg-white data-[state=active]:text-sabzgaam-dark-green data-[state=active]:shadow-sm rounded-md transition-all"
-                >
-                  حمل و نقل
                 </TabsTrigger>
                 <TabsTrigger 
                   value="entertainment" 
@@ -175,6 +179,8 @@ interface HistoryItemProps {
     steps: number;
     distance: string;
     coins: number;
+    transport?: boolean;
+    description?: string;
   };
 }
 
@@ -184,16 +190,29 @@ function HistoryItem({ item }: HistoryItemProps) {
       <div className="flex justify-between items-center">
         <div className="flex items-center">
           <div className="w-10 h-10 rounded-full bg-muted flex items-center justify-center ml-3">
-            <Calendar size={18} className="text-sabzgaam-dark-green" />
+            {item.transport ? (
+              <Bus size={18} className="text-sabzgaam-dark-green" />
+            ) : (
+              <Calendar size={18} className="text-sabzgaam-dark-green" />
+            )}
           </div>
           <div>
             <p className="font-medium">{item.date}</p>
-            <div className="flex items-center text-xs text-gray-500">
-              <Footprints size={12} className="ml-1" />
-              <span className="ml-2">{toPersianNumber(item.steps.toLocaleString())} قدم</span>
-              <MapPin size={12} className="ml-1" />
-              <span>{item.distance}</span>
-            </div>
+            {item.transport ? (
+              <div className="flex items-center text-xs text-gray-500">
+                <span className="ml-2">{item.distance}</span>
+              </div>
+            ) : (
+              <div className="flex items-center text-xs text-gray-500">
+                <Footprints size={12} className="ml-1" />
+                <span className="ml-2">{toPersianNumber(item.steps.toLocaleString())} قدم</span>
+                <MapPin size={12} className="ml-1" />
+                <span>{item.distance}</span>
+              </div>
+            )}
+            {item.transport && (
+              <div className="text-xs text-blue-600 mt-1">{item.description}</div>
+            )}
           </div>
         </div>
         <PriceDisplay amount={item.coins * 10000} size="sm" />
@@ -273,6 +292,24 @@ function RewardItem({ reward }: RewardItemProps) {
 }
 
 const historyItems = [
+  // Public transportation stories first
+  {
+    date: "امروز",
+    steps: 0,
+    distance: "مسیر مترو: صادقیه → امام خمینی",
+    coins: 30,
+    transport: true,
+    description: "سفر با مترو و صرفه‌جویی ۱ ساعت در ترافیک!"
+  },
+  {
+    date: "دیروز",
+    steps: 0,
+    distance: "مسیر BRT: آزادی → ولیعصر",
+    coins: 20,
+    transport: true,
+    description: "استفاده از BRT و کمک به هوای پاک تهران"
+  },
+  // Walking stories
   {
     date: "امروز",
     steps: 8432,
@@ -294,6 +331,26 @@ const historyItems = [
 ];
 
 const badges = [
+  // Public transportation badges first
+  {
+    title: "قهرمان مترو",
+    description: "۵ بار سفر با مترو در یک هفته",
+    icon: Bus,
+    unlocked: true,
+  },
+  {
+    title: "یار BRT",
+    description: "۳ بار استفاده از BRT در یک هفته",
+    icon: Bus,
+    unlocked: false,
+  },
+  {
+    title: "صرفه‌جویی در زمان",
+    description: "صرفه‌جویی ۳ ساعت با حمل و نقل عمومی",
+    icon: Clock,
+    unlocked: true,
+  },
+  // Existing badges
   {
     title: "اولین قدم",
     description: "تکمیل اولین پیاده‌روی",
@@ -321,6 +378,32 @@ const badges = [
 ];
 
 const myRewards = [
+  // Public transportation rewards first
+  {
+    title: "بلیط مترو",
+    vendor: "مترو تهران",
+    discount: "بلیط رایگان",
+    expiry: "۲۶ فروردین ۱۴۰۴",
+    code: "WC-M۷۳BC۹D۲",
+    used: false,
+  },
+  {
+    title: "تخفیف BRT",
+    vendor: "BRT تهران",
+    discount: "۵۰٪ تخفیف",
+    expiry: "۲۸ فروردین ۱۴۰۴",
+    code: "WC-B۴۵FG۹H۲J",
+    used: false,
+  },
+  {
+    title: "تخفیف تاکسی",
+    vendor: "تاکسی آنلاین",
+    discount: "۲۰٪ تخفیف",
+    expiry: "۳۰ فروردین ۱۴۰۴",
+    code: "WC-T۷۳BC۹D۲",
+    used: false,
+  },
+  // Existing rewards
   {
     title: "تخفیف قهوه",
     vendor: "کافه تهران",
