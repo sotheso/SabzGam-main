@@ -43,6 +43,16 @@ export default function ExplorePage() {
           </div>
         </div>
         
+        {/* Public Transportation Events */}
+        <div className="mb-6">
+          <h2 className="text-xl font-bold mb-3">رویدادهای حمل و نقل عمومی</h2>
+          <div className="space-y-4">
+            {publicTransportEvents.map((event, index) => (
+              <EventCard key={index} event={event} />
+            ))}
+          </div>
+        </div>
+
         {/* Popular Routes */}
         <div className="mb-6">
           <h2 className="text-xl font-bold mb-3">مسیرهای محبوب</h2>
@@ -197,5 +207,36 @@ const events = [
     location: "موزه ملی",
     participants: 87,
     coins: 15,
+  },
+];
+
+const publicTransportEvents = [
+  {
+    title: "تهران نفس می‌کشه، با هر سفر عمومی!",
+    date: "۱۵ اردیبهشت ۱۴۰۴ • ۹:۰۰ صبح",
+    location: "ایستگاه BRT ولیعصر",
+    participants: 200,
+    coins: 30,
+  },
+  {
+    title: "بیایید با هم ترافیک را شکست دهیم!",
+    date: "۲۰ اردیبهشت ۱۴۰۴ • ۲:۰۰ عصر",
+    location: "ایستگاه مترو تجریش",
+    participants: 150,
+    coins: 25,
+  },
+  {
+    title: "از امروز، ماشین شخصی کمتر، زندگی بهتر!",
+    date: "۲۵ اردیبهشت ۱۴۰۴ • ۱۰:۰۰ صبح",
+    location: "ترمینال جنوب",
+    participants: 180,
+    coins: 28,
+  },
+  {
+    title: "سریع، راحت، دوستدار محیط زیست — حمل و نقل عمومی تهران",
+    date: "۳۰ اردیبهشت ۱۴۰۴ • ۳:۰۰ عصر",
+    location: "ایستگاه تاکسی خطی آزادی",
+    participants: 120,
+    coins: 20,
   },
 ];
