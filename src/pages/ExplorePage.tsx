@@ -59,7 +59,7 @@ export default function ExplorePage() {
           <Card className="p-4">
             <div className="relative w-full h-[400px] rounded-lg overflow-hidden">
               <img 
-                src="/metro-map.jpg" 
+                src="/jYnnsnhH4RLLyczqsKBaeZoLhAkJS1IQpf2FuIee.jpg" 
                 alt="نقشه مترو تهران" 
                 className="w-full h-full object-cover"
               />
