@@ -50,7 +50,7 @@ function NavItem({ Icon, label, isActive }: NavItemProps) {
       <div
         className={cn(
           "p-1.5 rounded-full transition-colors",
-          isActive ? "gradient-bg text-white" : "text-gray-500"
+          isActive ? "gradient-tab text-white" : "text-gray-500"
         )}
       >
         <Icon size={20} />
@@ -58,7 +58,7 @@ function NavItem({ Icon, label, isActive }: NavItemProps) {
       <span
         className={cn(
           "text-xs mt-1 font-medium",
-          isActive ? "text-walkcoin-green" : "text-gray-500"
+          isActive ? "text-cyan-600" : "text-gray-500"
         )}
       >
         {label}

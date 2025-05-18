@@ -7,7 +7,7 @@ import { Card } from "@/components/ui/card";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { 
   Award, Calendar, Clock, Footprints, Leaf, 
-  MapPin, Settings, User as UserIcon, BadgeCheck, Bus
+  MapPin, Settings, User as UserIcon, BadgeCheck, Bus, Headphones
 } from "lucide-react";
 
 // Helper function to convert English numbers to Persian
@@ -24,10 +24,16 @@ export default function ProfilePage() {
       <div className="p-6">
         <div className="flex justify-between items-center mb-6">
           <h1 className="text-2xl font-bold">پروفایل</h1>
-          <Button variant="outline" className="flex items-center gap-2 px-3 py-2">
-            <Settings size={18} />
-            <span className="text-sm">تنظیمات</span>
-          </Button>
+          <div className="flex gap-3">
+            <Button variant="ghost" className="flex items-center gap-2">
+              <Headphones size={18} />
+              <span className="text-sm">پشتیبانی آنلاین</span>
+            </Button>
+            <Button variant="ghost" className="flex items-center gap-2">
+              <Settings size={18} />
+              <span className="text-sm">تنظیمات</span>
+            </Button>
+          </div>
         </div>
         
         {/* User Profile Card */}
